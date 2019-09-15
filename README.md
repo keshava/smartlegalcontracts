@@ -17,6 +17,7 @@ npm run dev
 - State not being updated after transactions
 
 ### Todo:
+- Implement blocking loaders
 - Solve the issues
 - Vuex for state management
 - Change the CSS framework
