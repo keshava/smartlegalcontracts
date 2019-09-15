@@ -1,0 +1,92 @@
+/* 21.a - coop charta snippet 1 (#3) */
+
+contract Coop =
+
+  record state = { 
+    founder : address,
+    director : address,
+    total_shares : int,
+    application_fee : int,
+    founder_s_initial_number_of_shares : int,
+    member_s_initial_number_of_shares : int,
+    application_map : map(address, application),
+    membership_map : map(address, membership) }
+
+  record application = { fee : int }
+
+  record membership = {	owned_shares : int }
+
+  public stateful entrypoint init(_founder_s_initial_number_of_shares : int, _application_fee : int, _member_s_initial_number_of_shares : int) =
+    let founder = Call.caller 
+    let founder_s_initial_number_of_shares = _founder_s_initial_number_of_shares
+    let application_fee = _application_fee 
+    let member_s_initial_number_of_shares = _member_s_initial_number_of_shares
+    let director = founder
+    { founder = founder,
+      director = director,
+	  application_fee = _application_fee,
+	  member_s_initial_number_of_shares = _member_s_initial_number_of_shares,
+      total_shares = _founder_s_initial_number_of_shares,
+	  founder_s_initial_number_of_shares = _founder_s_initial_number_of_shares,
+      application_map = {},
+      membership_map = { [founder] = {owned_shares=founder_s_initial_number_of_shares} } }
+
+  public stateful entrypoint set_fee_and_applicant_shares(_application_fee : int, _member_s_initial_number_of_shares : int) =
+    if(Call.caller == state.director) 
+      put(state{ application_fee = _application_fee })
+      put(state{ member_s_initial_number_of_shares = _member_s_initial_number_of_shares })
+
+  public stateful entrypoint apply() =
+    let applicant = Call.caller
+    let fee = Call.value 
+    create_application(applicant, fee)
+
+  stateful entrypoint create_application(_applicant : address, _fee : int) =
+    let applicant = _applicant
+    let fee = _fee
+    let application = { fee = fee }
+    put(state{ application_map[applicant] = application })
+
+  public stateful entrypoint reject_application(id : address) =
+    if(Call.caller == state.director)
+      Chain.spend(id, state.application_map[id].fee)
+      put(state{ application_map = Map.delete(id, state.application_map) })
+
+  public stateful entrypoint accept_application(id : address) =
+	if(Call.caller == state.director)
+	  if(state.application_map[id].fee == state.application_fee && !Map.member(id, state.membership_map))
+	    create_membership(id, state.member_s_initial_number_of_shares) 
+      put(state{ application_map = Map.delete(id, state.application_map) })
+
+  stateful entrypoint create_membership(_member : address, _owned_shares : int) =
+    let membership = { owned_shares = _owned_shares }
+    put(state{ membership_map[_member] = membership })
+    put(state{ total_shares = state.total_shares + state.member_s_initial_number_of_shares })
+
+  public stateful entrypoint leave_membership(id : address) =
+    Chain.spend(id, payout(id))
+    return_all_shares(id)
+    put(state{ membership_map = Map.delete(id, state.membership_map) })
+
+  public stateful entrypoint payout(id : address) =
+	  Contract.balance / state.total_shares * state.membership_map[id].owned_shares
+
+  public stateful entrypoint return_all_shares(id : address) =
+    put(state{ total_shares = state.total_shares - state.membership_map[id].owned_shares})
+    put(state{ membership_map[id].owned_shares = 0 })
+
+  public entrypoint list_all_members() : map(address, membership) =
+    if(Call.caller == state.director)
+      state.membership_map
+    else
+      {}
+        
+  stateful entrypoint change_director(_director: address) = 
+    if(Call.caller == state.director)
+      put(state{ director = _director})
+        
+  entrypoint get_state() : state =
+    state
+    
+  entrypoint capital() : int =
+    Contract.balance
