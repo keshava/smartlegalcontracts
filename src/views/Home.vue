@@ -47,9 +47,9 @@
             Payout
           </button>
 
-          <button type="button" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" @click="return_all_shares">
+          <!-- <button type="button" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" @click="return_all_shares">
             Return all shares
-          </button>
+          </button> -->
         </div>
       </div>
       
@@ -360,12 +360,12 @@
         await this.update_state();
       },
 
-      async return_all_shares() {
-        console.log("return_all_shares clicked");
-        let result = await contractCall('return_all_shares', [this.me], 0);
-        console.log(result);
-        await this.update_state();
-      },
+      // async return_all_shares() {
+      //   console.log("return_all_shares clicked");
+      //   let result = await contractCall('return_all_shares', [this.me], 0);
+      //   console.log(result);
+      //   await this.update_state();
+      // },
     }
   };
 </script>
