@@ -33,11 +33,13 @@ This project spans the entire arc from ideating to application implementation, h
 * a [generic cooperative charta](assets/charta.odt) for the cooperative
 * a first reformulation of the [charta in Lexon](assets/charta.lex.pdf)
 * [Sophia smart contract](assets/charta.aes) code as spec for Lexon
-* [Vue-based DApp](https://coopcharta.github.io/aepp/) for this basic functionality
+* [Vue-based DApp](src/views/Home.vue) for this basic functionality
+
+See immediatly below for instructions for the live demo.
 
 Please note that his doc and its s a central part of the results, on par with the DApp live demo. 
 
-Also in the interest of time the DApp shows a modest first step, not the entire charta.
+In the interest of time the DApp shows a modest first step, not the entire charta.
 
 Having beaten the complete path, even just for a functionally very reduced example was one central premise of this project.
 
@@ -45,7 +47,13 @@ Eventually an DApp as shown below is to be created following the process here de
 
 On a higher level, even the complete project will be but one example for this process to join real and blockchain world.
 
-**The live demo is at: https://coopcharta.github.io/aepp/**
+### Live Demo
+
+#### Phone
+
+
+#### Desktop
+
 
 
 ## Sequence of Translations
@@ -77,8 +85,7 @@ The following is the same charta gain, now articulated in Aeternity's blockchain
 
 Finally, these are screenshots from the DApp that uses the smart contract backend. You find the [source code here](src/views/Home.vue).
 
-You can see them live [here](https://coopcharta.github.io/aepp/).
-
+See above for the link and explanation of the live demo.
 
 ![Dapp](images/dapp.png)
 
@@ -173,26 +180,30 @@ We want to work with and support who would like to use this project in productio
 	Lexon is sufficiently exciting to align a group of strangers over one weekend, and navigate uncharted terrains for a very ambitious task.
     
 * #### Aeternity Sophia
-	The functional language Sophia is a great language to program safe smart contracts in. Different versions of documentation online and minor known issues can make life difficult. The safety has the usual cost of some verbosity to achieve updates that are trivial in altogether lesser languages.
+	The functional language Sophia is a great language to program safe smart contracts in. Different versions of documentation online and minor known issues can make life difficult, nothing that will last. The safety has the usual cost of some verbosity to achieve updates that are trivial in lesser languages.
 
 * #### Aeternity maturity
-	Aeternity seems to be close to mature enough to deploy production-level projects. The engineering that can be observed when looking under the hood is impressive, including the implementation of its virtual machine. Encountered toothing problems are minor and manageable.
+	Aeternity and its ecosystem turns out to be mature enough to deploy production-level projects. The engineering that can be observed when looking under the hood is impressive, including the implementation of its virtual machine. Encountered problems tend to misunderstandings. The very fact that outdated links and docs get in the way points to the steady progress that is happening.
 
 
 
 ## Resources
 
+* Coop Chart Dapp Live Demo  
+  * see above for link and explanation  
+
+
 * Lexon Online Editor  
   * http://3.lexon.tech  
 
 
-* Sophia Online Editors
+* Sophia Online Editors  
   * we used https://testnet.contracts.aepps.com  
   * alternative: http://fireeditor.nikitafuchs.de  
     
 
-* Sophia off-line compiler
-  * minimal overhead: https://github.com/aeternity/aesophia_cli   
+* Sophia off-line compiler  
+  * minimal overhead: https://github.com/aeternity/aesophia_cli  
 
 
 
