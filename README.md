@@ -33,7 +33,24 @@ This project spans the entire arc from ideating to application implementation, h
 * a [generic cooperative charta](assets/charta.odt) for the cooperative
 * a first reformulation of the [charta in Lexon](assets/charta.lex.pdf)
 * [Sophia smart contract](assets/charta.aes) code as spec for Lexon
-* [Vue-based DApp](src/views/Home.vue) for this basic functionality
+* [Vue-based DApp](https://coopcharta.github.io/aepp/) for this basic functionality
+
+Please note that his doc and its s a central part of the results, on par with the DApp live demo. 
+
+Also in the interest of time the DApp shows a modest first step, not the entire charta.
+
+Having beaten the complete path, even just for a functionally very reduced example was one central premise of this project.
+
+Eventually an DApp as shown below is to be created following the process here described to arrive at a legally sound implementation of a cooperative DAO that can own assets and interact as a legal person.
+
+On a higher level, even the complete project will be but one example for this process to join real and blockchain world.
+
+**The live demo is at: https://coopcharta.github.io/aepp/**
+
+
+## Sequence of Translations
+
+**The sequence is legal > Lexon > Sophia > DApp.** 
 
 The following screenshots illustrate the four steps and how the code evolves from legal prose, through the Lexon syntax to a Sophia smart contract and finally, finds its expression on the mobile surface of a decentralized application.
 
@@ -59,6 +76,9 @@ The following is the same charta gain, now articulated in Aeternity's blockchain
 4. ### Dapp
 
 Finally, these are screenshots from the DApp that uses the smart contract backend. You find the [source code here](src/views/Home.vue).
+
+You can see them live [here](https://coopcharta.github.io/aepp/).
+
 
 ![Dapp](images/dapp.png)
 
@@ -89,7 +109,6 @@ Once the setup is completed you can simply run
 
 * The whole contract state is being read into the aepp. This is implemented as a workaround for: https://github.com/aeternity/hackathon-prague/issues/8
 
-* State not being updated after transactions
 
 ## Work
 
@@ -125,6 +144,8 @@ Use Step 3 to bring the Lexon compiler to the next level.
 7. **Complete Charta**:  
 Iterate through the remaining articles of the legal charta to bring it on-chain. This has turned out to be a much more involved effort than anticpated.
 
+8. **Production**
+We want to work with and support who would like to use this project in production for an actual cooperative.
 
 ## Findings
 
